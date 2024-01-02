@@ -43,22 +43,20 @@ function App() {
 
   return (
     <AuthProvider>
-      <BrowserRouter basename='/ToDoApp'>
-        <Routes>
-          <Route>
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/"
-              element={
-                <RequireAuth>
-                  <TodoList tasks={tasks} defaultTask={defaultTask} />
-                </RequireAuth>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <TodoList tasks={tasks} defaultTask={defaultTask} />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </AuthProvider>
   );
 }
