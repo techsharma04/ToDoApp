@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from "./AuthContext";
 import TodoList from "./components/TodoList";
 import './App.css'
@@ -31,7 +31,7 @@ function App() {
     if (arr) {
       dispatch(addTasks(JSON.parse(arr)));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -43,21 +43,22 @@ function App() {
 
   return (
     <AuthProvider>
-      <Routes>
-        <Route>
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/"
-            element={
-              <RequireAuth>
-                <TodoList tasks={tasks} defaultTask={defaultTask} />
-              </RequireAuth>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-
-      </Routes>
+      <BrowserRouter basename='/ToDoApp'>
+        <Routes>
+          <Route>
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <RequireAuth>
+                  <TodoList tasks={tasks} defaultTask={defaultTask} />
+                </RequireAuth>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </AuthProvider>
   );
 }
