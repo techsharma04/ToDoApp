@@ -12,8 +12,8 @@ const Login = () => {
   let from = location.state?.from?.pathname || "/";
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: 'techsharma04@gmail.com',
+    password: '12345678'
   })
   const { email, password } = formData;
 
